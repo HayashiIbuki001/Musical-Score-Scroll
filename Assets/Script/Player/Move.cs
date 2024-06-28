@@ -11,6 +11,9 @@ public class Move : MonoBehaviour
     /// </summary>
     public int pos;
 
+    //x軸の値を固定
+    private float pos_x = -8.4f;
+
     /// <summary>
     /// 位置移動が完了しているかの処理
     /// </summary>
@@ -20,6 +23,9 @@ public class Move : MonoBehaviour
     {
         pos = 0;
         moveInput = true;
+
+        //初期の位置を設定
+        this.transform.position = new Vector3(pos_x, 1.495f);
     }
 
     // Update is called once per frame
@@ -28,11 +34,40 @@ public class Move : MonoBehaviour
         //特定の位置にいるときのメソッドの指定
         if (moveInput == true)
         {
+            //１オクターブ上のレ
+            if (pos == 1)
+            {
+                OctaveRe();
+            }
             //１オクターブ上のド
-            if (pos == 0)
+            else if (pos == 0)
             {
                 OctaveDo();
             }
+            //シ
+            else if (pos == -1)
+            {
+                Si();
+            }
+        }
+    }
+
+    /// <summary>
+    /// １オクターブ上のレにPlayerがいるときの処理 pos:1
+    /// </summary>
+    public void OctaveRe()
+    {
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            //一つ音階を上げる
+            this.transform.position = new Vector3(pos_x, 2.37f);
+            pos = 2;
+        }
+        else if (Input.GetKeyDown(KeyCode.S))
+        {
+            //一つ音階を下げる
+            this.transform.position = new Vector3(pos_x, 1.495f);
+            pos = 0;
         }
     }
 
@@ -41,6 +76,36 @@ public class Move : MonoBehaviour
     /// </summary>
     public void OctaveDo()
     {
-        Debug.Log("test");
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            //一つ音階を上げる
+            this.transform.position = new Vector3(pos_x, 1.93f);
+            pos = 1;
+        }
+        else if (Input.GetKeyDown(KeyCode.S))
+        {
+            //一つ音階を下げる
+            this.transform.position = new Vector3(pos_x, 1.07f);
+            pos = -1;
+        }
+    }
+
+    /// <summary>
+    /// シにPlayerがいるときの処理 pos:-1
+    /// </summary>
+    public void Si()
+    {
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            //一つ音階を上げる
+            this.transform.position = new Vector3(pos_x, 1.495f);
+            pos = 0;
+        }
+        else if (Input.GetKeyDown(KeyCode.S))
+        {
+            //一つ音階を下げる
+            this.transform.position = new Vector3(pos_x, 0.628f);
+            pos = -2;
+        }
     }
 }
