@@ -49,6 +49,16 @@ public class Move : MonoBehaviour
             {
                 Si();
             }
+            //ƒ‰
+            else if (pos == -2)
+            {
+                Ra();
+            }
+            //ƒ\
+            else if (pos == -3)
+            {
+                So();
+            }
         }
     }
 
@@ -106,6 +116,44 @@ public class Move : MonoBehaviour
             //ˆê‚Â‰¹ŠK‚ğ‰º‚°‚é
             this.transform.position = new Vector3(pos_x, 0.628f);
             pos = -2;
+        }
+    }
+
+    /// <summary>
+    /// ƒ‰‚ÉPlayer‚ª‚¢‚é‚Æ‚«‚Ìˆ— pos:-2
+    /// </summary>
+    public void Ra()
+    {
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            //ˆê‚Â‰¹ŠK‚ğã‚°‚é
+            this.transform.position = new Vector3(pos_x, 1.07f);
+            pos = -1;
+        }
+        else if (Input.GetKeyDown(KeyCode.S))
+        {
+            //ˆê‚Â‰¹ŠK‚ğ‰º‚°‚é
+            this.transform.position = new Vector3(pos_x, 0.2f);
+            pos = -3;
+        }
+    }
+
+    /// <summary>
+    /// ƒ\‚ÉPlayer‚ª‚¢‚é‚Æ‚«‚Ìˆ— pos:-3
+    /// </summary>
+    public void So()
+    {
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            //ˆê‚Â‰¹ŠK‚ğã‚°‚é
+            this.transform.position = new Vector3(pos_x, 0.628f);
+            pos = -2;
+        }
+        else if (Input.GetKeyDown(KeyCode.S))
+        {
+            //ˆê‚Â‰¹ŠK‚ğ‰º‚°‚é
+            this.transform.position = new Vector3(pos_x, -0.248f);
+            pos = -4;
         }
     }
 }
